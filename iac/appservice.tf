@@ -13,16 +13,10 @@ resource "azurerm_linux_web_app" "webapp" {
   service_plan_id     = azurerm_service_plan.asp.id
 
   site_config {
-    always_on = false
+    always_on = true
     application_stack {
-      docker_image_name = "nginx:latest" 
+      docker_image_name = "apptarea3ntacr.azurecr.io/azure-demo-app:latest"
     }
-  }
-
-  lifecycle {
-    ignore_changes = [
-      site_config[0].application_stack[0].docker_image_name
-    ]
   }
 
   identity {
@@ -31,13 +25,15 @@ resource "azurerm_linux_web_app" "webapp" {
 
   app_settings = {
     "WEBSITES_PORT" = "8080"
+    "PORT"          = "8080"
     "WEBSITES_CONTAINER_START_TIME_LIMIT" = "1800"
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-    "DOCKER_REGISTRY_SERVER_URL"          = "https://apptarea3ntacr.azurecr.io"
+    "DOCKER_REGISTRY_SERVER_URL"          = "https://${azurerm_container_registry.acr.login_server}"
+    "DOCKER_REGISTRY_SERVER_USERNAME"     = azurerm_container_registry.acr.admin_username
+    "DOCKER_REGISTRY_SERVER_PASSWORD"     = azurerm_container_registry.acr.admin_password
   }
 }
 
-# Permiso para que el Web App pueda jalar imágenes del ACR
 resource "azurerm_role_assignment" "acr_pull" {
   scope                = azurerm_container_registry.acr.id
   role_definition_name = "AcrPull"
