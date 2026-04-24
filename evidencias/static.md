@@ -1,7 +1,7 @@
 # Evidencia de Implementación: Azure Static Web Apps
 **Materia:** New Technologies
 **Tarea:** Tarea 3 - Parcial 2
-**Nombre del Alumno:** [TU NOMBRE COMPLETO AQUÍ]
+**Nombre del Alumno:** Fernando Augusto Zavala Gómez
 
 ---
 
