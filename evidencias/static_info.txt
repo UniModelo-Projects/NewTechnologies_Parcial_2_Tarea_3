@@ -1,9 +1,0 @@
-# Evidencias Static Web Site
-
-En este documento se deben incluir:
-1. Pantalla de la configuración del pipeline en GitHub Actions.
-2. Pantalla del despliegue exitoso (Logs de GitHub Actions).
-3. Pantalla de la aplicación corriendo en la URL de Azure Static Web Apps.
-4. Explicación de cada imagen.
-
-(Convertir este documento a static.pdf)

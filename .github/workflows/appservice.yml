@@ -23,10 +23,13 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and push Docker image
-        run: |
-          cd app
-          docker build -t apptarea3ntacr.azurecr.io/azure-demo-app:${{ github.sha }} .
-          docker push apptarea3ntacr.azurecr.io/azure-demo-app:${{ github.sha }}
+        uses: docker/build-push-action@v4
+        with:
+          context: ./app
+          push: true
+          tags: |
+            apptarea3ntacr.azurecr.io/azure-demo-app:latest
+            apptarea3ntacr.azurecr.io/azure-demo-app:${{ github.sha }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2

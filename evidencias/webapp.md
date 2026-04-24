@@ -1,6 +1,6 @@
 # Evidencia de Implementación: Azure App Service (Docker)
-**Materia:** New Technologies  
-**Tarea:** Tarea 3 - Parcial 2  
+**Materia:** New Technologies
+**Tarea:** Tarea 3 - Parcial 2
 **Nombre del Alumno:** [TU NOMBRE COMPLETO AQUÍ]
 
 ---
@@ -8,7 +8,7 @@
 ## 1. Pipeline y Registro de Contenedores (ACR)
 Configuración del flujo para construir la imagen Docker y subirla al Azure Container Registry.
 
-> **[PEGAR AQUÍ: Captura de pantalla del pipeline appservice.yml o de la ejecución del paso "Build and push Docker image"]**
+![alt text](image.png)
 
 **Explicación:** Se configuró un flujo de trabajo que automatiza la creación de la imagen basada en el Dockerfile y su almacenamiento en el ACR (`apptarea3ntacr`).
 
