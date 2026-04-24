@@ -1,3 +1,4 @@
+// Deployment trigger for new infrastructure settings
 import React from 'react'
 
 function App() {
