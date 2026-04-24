@@ -14,23 +14,20 @@ resource "azurerm_linux_web_app" "webapp" {
 
   site_config {
     always_on = true
-    application_stack {
-      docker_image_name = "apptarea3ntacr.azurecr.io/azure-demo-app:latest"
-    }
+    # Dejamos esto vacío para que manden las variables de entorno (Modo Clásico)
+  }
+
+  app_settings = {
+    "DOCKER_CUSTOM_IMAGE_NAME"            = "apptarea3ntacr.azurecr.io/azure-demo-app:latest"
+    "DOCKER_REGISTRY_SERVER_URL"          = "https://apptarea3ntacr.azurecr.io"
+    "DOCKER_REGISTRY_SERVER_USERNAME"     = azurerm_container_registry.acr.admin_username
+    "DOCKER_REGISTRY_SERVER_PASSWORD"     = azurerm_container_registry.acr.admin_password
+    "WEBSITES_PORT"                       = "8080"
+    "WEBSITES_CONTAINER_START_TIME_LIMIT" = "1800"
   }
 
   identity {
     type = "SystemAssigned"
-  }
-
-  app_settings = {
-    "WEBSITES_PORT" = "8080"
-    "PORT"          = "8080"
-    "WEBSITES_CONTAINER_START_TIME_LIMIT" = "1800"
-    "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-    "DOCKER_REGISTRY_SERVER_URL"          = "https://${azurerm_container_registry.acr.login_server}"
-    "DOCKER_REGISTRY_SERVER_USERNAME"     = azurerm_container_registry.acr.admin_username
-    "DOCKER_REGISTRY_SERVER_PASSWORD"     = azurerm_container_registry.acr.admin_password
   }
 }
 
